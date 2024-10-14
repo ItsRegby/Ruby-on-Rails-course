@@ -1,0 +1,66 @@
+<%= form_with(url: posts_path, method: :get, local: true, class: "mb-4") do |form| %>
+  <div class="row">
+    <div class="col-md-8">
+      <h1 class="mb-4">Posts</h1>
+    </div>
+    <div class="col-md-4 text-right">
+      <%= link_to 'New Post', new_post_path, class: "btn btn-success mb-3", data: { turbo: true } %>
+      <%= link_to 'New Category', new_category_path, class: "btn btn-info mb-3", data: { turbo: true } %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <%= form.label :category_id, "Category" %>
+      <%= form.collection_select :category_id, Category.all, :id, :name, { include_blank: "All Categories" }, { class: "form-control" } %>
+    </div>
+    <div class="col-md-3">
+      <%= form.label :start_date, "Start Date" %>
+      <%= form.date_field :start_date, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= form.label :end_date, "End Date" %>
+      <%= form.date_field :end_date, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= form.label :keyword, "Keyword" %>
+      <%= form.text_field :keyword, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-3">
+      <%= form.label :min_comments, "Min Comments" %>
+      <%= form.number_field :min_comments, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= form.label :max_comments, "Max Comments" %>
+      <%= form.number_field :max_comments, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= form.label :sort, "Sort By" %>
+      <%= form.select :sort, [
+        ['Newest', 'newest'],
+        ['Oldest', 'oldest'],
+        ['Most Comments', 'most_comments'],
+        ['Least Comments', 'least_comments'],
+        ['Title (A-Z)', 'title_asc'],
+        ['Title (Z-A)', 'title_desc']
+      ], { include_blank: "Default" }, { class: "form-control" } %>
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+      <%= form.submit "Filter", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <% @posts.each do |post| %>
+      <li class="list-group-item">
+        <h5><%= link_to post.title, post, class: "text-primary", data: { turbo: true } %></h5>
+        <p class="mb-1"><strong>Category:</strong> <%= post.category&.name || 'Uncategorized' %></p>
+        <p class="mb-0"><strong>Comments:</strong> <%= post.comments.count %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>

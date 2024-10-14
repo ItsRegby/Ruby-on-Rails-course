@@ -1,0 +1,8 @@
+<div class="container mt-4">
+  <h1>Edit Post</h1>
+
+  <%= render 'form', post: @post %>
+
+  <%= link_to 'Show', @post, class: 'btn btn-info mt-3', data: { turbo: true }  %>
+  <%= link_to 'Back to Posts', posts_path, class: 'btn btn-secondary mt-3', data: { turbo: true }  %>
+</div>
