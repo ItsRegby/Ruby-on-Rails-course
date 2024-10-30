@@ -5,3 +5,4 @@
 /lab2_blog/public
 /lab2_blog/config/master.key
 *.log
+/lab2_blog/storage
