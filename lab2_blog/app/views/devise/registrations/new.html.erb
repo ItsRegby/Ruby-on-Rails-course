@@ -1,0 +1,93 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body p-4 p-md-5">
+          <div class="text-center mb-4">
+            <h2 class="display-5 fw-bold text-primary">Create Account</h2>
+            <p class="text-muted">Join our community today</p>
+          </div>
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "needs-validation" }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <div class="row g-3">
+              <!-- Personal Information -->
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <%= f.text_field :first_name, class: "form-control", placeholder: "First Name", autofocus: true %>
+                  <%= f.label :first_name, class: "form-label" %>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
+                  <%= f.label :last_name, class: "form-label" %>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <%= f.email_field :email, class: "form-control", placeholder: "Email", autocomplete: "email" %>
+                  <%= f.label :email, class: "form-label" %>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <%= f.telephone_field :phone_number, class: "form-control", placeholder: "Phone Number" %>
+                  <%= f.label :phone_number, class: "form-label" %>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <%= f.date_field :date_of_birth, class: "form-control", placeholder: "Date of Birth" %>
+                  <%= f.label :date_of_birth, class: "form-label" %>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label text-muted">Profile Picture</label>
+                  <div class="input-group">
+                    <%= f.file_field :avatar, class: "form-control", accept: "image/*" %>
+                    <label class="input-group-text" for="user_avatar">
+                      <i class="bi bi-camera"></i>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Password Fields -->
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <%= f.password_field :password, class: "form-control", placeholder: "Password", autocomplete: "new-password" %>
+                  <%= f.label :password, class: "form-label" %>
+                  <% if @minimum_password_length %>
+                    <div class="form-text">At least <%= @minimum_password_length %> characters</div>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm Password", autocomplete: "new-password" %>
+                  <%= f.label :password_confirmation, class: "form-label" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center mt-4">
+              <%= f.submit "Create Account", class: "btn btn-primary btn-lg px-5 py-3 fw-bold" %>
+              <div class="mt-3 text-muted">
+                Already have an account? <%= link_to "Sign in", new_session_path(resource_name), class: "text-primary text-decoration-none" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

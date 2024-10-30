@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   include PostsHelper
-
+  before_action :authenticate_user!
   def index
     @posts = filter_and_sort_posts(Post.all, filter_params)
   end

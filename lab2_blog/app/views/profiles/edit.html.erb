@@ -1,0 +1,114 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white text-center py-4">
+          <h1 class="display-6 mb-0">Edit Profile</h1>
+        </div>
+
+        <div class="card-body p-4 p-md-5">
+          <%= form_for(@user, url: profile_path, html: { multipart: true, class: "needs-validation" }) do |f| %>
+
+            <!-- Avatar Section -->
+            <div class="text-center mb-4">
+              <div class="position-relative d-inline-block">
+                <% if @user.avatar.present? %>
+                  <%= image_tag @user.avatar, class: "rounded-circle img-thumbnail", style: "width: 180px; height: 180px; object-fit: cover;" %>
+                <% else %>
+                  <div class="rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 180px; height: 180px;">
+                    <i class="bi bi-person text-secondary" style="font-size: 4rem;"></i>
+                  </div>
+                <% end %>
+                <label for="user_avatar" class="position-absolute bottom-0 end-0 mb-2 me-2">
+                  <div class="btn btn-primary btn-sm rounded-circle">
+                    <i class="bi bi-camera-fill"></i>
+                  </div>
+                </label>
+                <%= f.file_field :avatar, class: "d-none", accept: "image/*" %>
+              </div>
+            </div>
+
+            <!-- Personal Information Section -->
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-light">
+                <h5 class="mb-0"><i class="bi bi-person-badge me-2"></i>Personal Information</h5>
+              </div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                      <%= f.text_field :first_name, class: "form-control", placeholder: "First Name" %>
+                      <%= f.label :first_name, class: "form-label" %>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                      <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
+                      <%= f.label :last_name, class: "form-label" %>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                      <%= f.telephone_field :phone_number, class: "form-control", placeholder: "Phone Number" %>
+                      <%= f.label :phone_number, class: "form-label" %>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Date of Birth</label>
+                    <div class="row g-2">
+                      <%= f.date_select :date_of_birth,
+                                        start_year: 1900,
+                                        end_year: Time.current.year,
+                                        class: "form-select",
+                                        wrapper_html: { class: "col" } %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Account Settings Section -->
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-light">
+                <h5 class="mb-0"><i class="bi bi-shield-lock me-2"></i>Account Settings</h5>
+              </div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-md-12">
+                    <div class="form-floating mb-3">
+                      <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+                      <%= f.label :email, class: "form-label" %>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                      <%= f.password_field :password, class: "form-control", placeholder: "New Password" %>
+                      <%= f.label :password, "New Password", class: "form-label" %>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                      <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm New Password" %>
+                      <%= f.label :password_confirmation, "Confirm New Password", class: "form-label" %>
+                    </div>
+                  </div>
+                </div>
+                <small class="text-muted">Leave password fields blank if you don't want to change it</small>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <%= f.submit 'Save Changes', class: "btn btn-primary btn-lg px-5 py-3 fw-bold" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

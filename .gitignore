@@ -4,3 +4,4 @@
 /lab2_blog/tmp
 /lab2_blog/public
 /lab2_blog/config/master.key
+*.log
