@@ -96,6 +96,16 @@
             </div>
           </div>
 
+          <div class="col-md-6">
+            <div class="p-3 bg-light rounded-3">
+              <small class="text-muted text-uppercase">Two-Factor Authentication</small>
+              <div class="fs-5 mt-1">
+                <i class="bi bi-shield-lock me-2 text-primary"></i>
+                <%= @user.two_factor_enabled ? "Enabled" : "Disabled" %>
+              </div>
+            </div>
+          </div>
+
           <!-- Action Buttons -->
           <div class="text-center">
             <%= link_to edit_profile_path, class: "btn btn-primary btn-lg px-5 py-3 me-2" do %>

@@ -97,6 +97,14 @@
                       <%= f.label :password_confirmation, "Confirm New Password", class: "form-label" %>
                     </div>
                   </div>
+
+                  <!-- Two-Factor Authentication Toggle -->
+                  <div class="col-md-12 mt-3">
+                    <div class="form-check form-switch">
+                      <%= f.check_box :two_factor_enabled, class: "form-check-input", id: "twoFactorSwitch" %>
+                      <%= f.label :two_factor_enabled, "Enable Two-Factor Authentication (OTP)", class: "form-check-label", for: "twoFactorSwitch" %>
+                    </div>
+                  </div>
                 </div>
                 <small class="text-muted">Leave password fields blank if you don't want to change it</small>
               </div>

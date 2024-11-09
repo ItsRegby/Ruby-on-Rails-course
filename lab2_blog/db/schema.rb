@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_30_204224) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_06_192951) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,6 +92,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_30_204224) do
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
+  create_table "login_attempts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "ip_address", null: false
+    t.string "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_login_attempts_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -114,6 +123,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_30_204224) do
     t.string "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "otp_secret"
+    t.boolean "otp_required_for_login", default: false
+    t.boolean "two_factor_enabled", default: false
+    t.integer "failed_attempts", default: 0
+    t.datetime "locked_until"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -121,5 +135,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_30_204224) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
+  add_foreign_key "login_attempts", "users"
   add_foreign_key "posts", "categories"
 end
