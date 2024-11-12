@@ -20,11 +20,15 @@ gem "jbuilder"
 gem 'bootstrap', '~> 5.0.0'
 # Styles preprocessor
 gem 'sassc-rails'
-
+#Turbolinks® makes navigating your web application faster.
 gem 'turbolinks', '~> 5'
-
+#Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
-
+#Figaro was written to make it easy to securely configure Rails applications.
+gem 'figaro'
+#Ruby wrapper for Telegram's Bot API.
+gem 'telegram-bot-ruby'
+#Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
 gem 'activeadmin'
 
 # Use Redis adapter to run Action Cable in production

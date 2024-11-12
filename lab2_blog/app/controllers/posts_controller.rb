@@ -16,8 +16,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
+      PublishToTelegramService.new(@post).call
       BlogNotificationMailer.new_post_notification(@post).deliver_later
-      redirect_to @post
+      redirect_to @post,  notice: 'Post was successfully created.'
     else
       render :new
     end

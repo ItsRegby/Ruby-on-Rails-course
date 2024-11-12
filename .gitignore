@@ -6,3 +6,4 @@
 /lab2_blog/config/master.key
 *.log
 /lab2_blog/storage
+lab2_blog/config/application.yml
